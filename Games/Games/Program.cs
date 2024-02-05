@@ -64,5 +64,10 @@ namespace games
             return games;
         }
 
+        public static void search()
+        {
+
+        }
+
     }
 }
