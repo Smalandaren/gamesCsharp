@@ -1,26 +1,35 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace games
 {
     public class Games
     {
-        public static String[] games = { "Overwatch", "Fortnite", "Minecraft" };
+        public static ArrayList games = new ArrayList()/*{ "Overwatch", "Fortnite", "Minecraft" }*/;
+        
         public static void Main(String[] args)
         {
+            games.Add("Overwatch");
+            games.Add("Fortnite");
+            games.Add("Minecraft");
 
             bool on = true;
             while (on)
             {
-                Console.Clear();
+                
 
                 Console.WriteLine("Vad vill du göra?\n" +
                     "1. Skriv ut listan\n" +
                     "2. Räkna listan\n" +
                     "3. Sortera listan\n" +
-                    "4. Söka/lägga till");
+                    "4. Söka/lägga till\n" +
+                    "5. Avsluta");
+
 
                 String choice = Console.ReadLine();
+
+                Console.Clear();
 
                 switch (choice)
                 {
@@ -63,12 +72,12 @@ namespace games
 
         public static int Count()
         {
-            return games.Length;
+            return games.Count;
         }
 
-        public static String[] Sort()
+        public static ArrayList Sort()
         {
-            Array.Sort(games);
+            games.Sort();
             return games;
         }
 
@@ -86,9 +95,10 @@ namespace games
                 String answer = Console.ReadLine();
                 if (answer.ToLower().Equals("ja"))
                 {
-                    games.Append(searchWord);
+                    Console.WriteLine("Adding");
+                    games.Add(searchWord);
                 }
-                else { return; }
+                Console.Clear();
             }
         }
 
