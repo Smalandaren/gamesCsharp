@@ -6,14 +6,14 @@ namespace games
 {
     public class Games
     {
-        public static ArrayList games = new ArrayList()/*{ "Overwatch", "Fortnite", "Minecraft" }*/;
+        public static Dictionary<String, String> games = new Dictionary<String, String>()/*{ "Overwatch", "Fortnite", "Minecraft" }*/;
         
         public static void Main(String[] args)
         {
-            games.Add("Overwatch");
-            games.Add("Fortnite");
-            games.Add("Minecraft");
-
+            games.Add("Overwatch", "Blizzard");
+            games.Add("Fortnite", "Epic Games");
+            games.Add("Minecraft", "Mojang");
+            
             bool on = true;
             while (on)
             {
@@ -62,9 +62,9 @@ namespace games
         {
             String readableList = "";
 
-            foreach (String s in games)
+            foreach (KeyValuePair<String, String> s in games)
             {
-                readableList += s + ", ";
+                readableList += s.Key + ": " + s.Value + "\n";
                 
             }
             return readableList;
@@ -75,28 +75,38 @@ namespace games
             return games.Count;
         }
 
-        public static ArrayList Sort()
+        public static Dictionary<String, String> Sort()
         {
-            games.Sort();
+            /*
+            games.Sort();*/
+            Console.WriteLine("Du kan inte sorta en dictionary");
             return games;
         }
 
         public static void Search()
         {
-            Console.WriteLine("Vilket spel vill du söka efter?");
+            Console.WriteLine("Vad vill du söka efter?");
             String searchWord = Console.ReadLine();
-            if (games.Contains(searchWord))
+            if (games.Keys.Contains(searchWord))
             {
                 Console.WriteLine("Spelet finns i listan");
             }   
+            else if(games.Values.Contains(searchWord))
+            {
+                Console.WriteLine("Företaget finns i listan");
+            }
             else
             {
-                Console.WriteLine("Spelet finns inte i listan, vill du lägga till det?");
+                Console.WriteLine("Det finns inte i listan, vill du lägga till det?");
                 String answer = Console.ReadLine();
                 if (answer.ToLower().Equals("ja"))
                 {
+                    Console.WriteLine("Är det ett spel eller företag?");
+                    
+                    Console.WriteLine("Vilket företag har utvecklat spelet?");
+                    String searchedCompany = Console.ReadLine();
                     Console.WriteLine("Adding");
-                    games.Add(searchWord);
+                    games.Add(searchWord, searchedCompany);
                 }
                 Console.Clear();
             }
